@@ -1,0 +1,90 @@
+[
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_light.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_light.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_semibold.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_semibold.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_bold.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_bold.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_blackitalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_blackitalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_medium.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_medium.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_regular.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_regular.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/xml_device_admin_config.xml.flat",
+        "source": "com.strictfocus.app-main-53:/xml/device_admin_config.xml"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_thin.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_thin.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_black.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_black.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_italic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_italic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/mipmap-xxxhdpi_icon.jpg.flat",
+        "source": "com.strictfocus.app-main-53:/mipmap-xxxhdpi/icon.jpg"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_extralightitalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_extralightitalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/xml_accessibility_service_config.xml.flat",
+        "source": "com.strictfocus.app-main-53:/xml/accessibility_service_config.xml"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_lightitalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_lightitalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_extrabolditalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_extrabolditalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_mediumitalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_mediumitalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_extrabold.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_extrabold.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/mipmap-xxxhdpi_icon_round.jpg.flat",
+        "source": "com.strictfocus.app-main-53:/mipmap-xxxhdpi/icon_round.jpg"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_bolditalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_bolditalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_extralight.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_extralight.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_semibolditalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_semibolditalic.ttf"
+    },
+    {
+        "merged": "com.strictfocus.app-debug-51:/font_poppins_thinitalic.ttf.flat",
+        "source": "com.strictfocus.app-main-53:/font/poppins_thinitalic.ttf"
+    }
+]
