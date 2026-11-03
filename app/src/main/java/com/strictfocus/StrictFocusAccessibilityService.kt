@@ -8,21 +8,31 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class StrictFocusAccessibilityService : AccessibilityService() {
 
+    // Keep accessibility actions on the main thread.
     private val scope =
-        CoroutineScope(SupervisorJob() + Dispatchers.IO)
+        CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
 
     private var lastRedirectAt = 0L
+    private var redirectInProgress = false
 
     override fun onAccessibilityEvent(event: AccessibilityEvent?) {
-        if (event?.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
+        if (event == null) return
+
+        // Listen for app/window transitions.
+        if (
+            event.eventType != AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED &&
+            event.eventType != AccessibilityEvent.TYPE_WINDOWS_CHANGED
+        ) {
             return
         }
 
         val pkg = event.packageName?.toString() ?: return
 
+        // Ignore StrictFocus itself and Android System UI.
         if (
             pkg == packageName ||
             pkg == "com.android.systemui"
@@ -30,36 +40,56 @@ class StrictFocusAccessibilityService : AccessibilityService() {
             return
         }
 
+        if (redirectInProgress) return
+
         scope.launch {
-            if (!StrictLockManager.isLocked(this@StrictFocusAccessibilityService, pkg)) {
-                return@launch
+            // Read the active lock rule using IO.
+            val locked = withContext(Dispatchers.IO) {
+                StrictLockManager.isLocked(
+                    this@StrictFocusAccessibilityService,
+                    pkg
+                )
             }
+
+            if (!locked) return@launch
 
             val now = System.currentTimeMillis()
 
-            if (now - lastRedirectAt < 800L) {
+            // Prevent repeated redirects caused by multiple accessibility events.
+            if (now - lastRedirectAt < 1000L) {
                 return@launch
             }
 
             lastRedirectAt = now
+            redirectInProgress = true
 
-            performGlobalAction(GLOBAL_ACTION_HOME)
+            try {
+                // These actions run on the main thread.
+                performGlobalAction(GLOBAL_ACTION_HOME)
 
-            val intent = Intent(
-                this@StrictFocusAccessibilityService,
-                StrictBlockActivity::class.java
-            ).addFlags(
-                Intent.FLAG_ACTIVITY_NEW_TASK or
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP
-            )
+                val intent = Intent(
+                    this@StrictFocusAccessibilityService,
+                    StrictBlockActivity::class.java
+                ).apply {
+                    addFlags(
+                        Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_SINGLE_TOP
+                    )
+                }
 
-            runCatching {
                 startActivity(intent)
+
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {
+                redirectInProgress = false
             }
         }
     }
 
-    override fun onInterrupt() = Unit
+    override fun onInterrupt() {
+        // No action required.
+    }
 
     override fun onDestroy() {
         scope.cancel()
